@@ -1,0 +1,153 @@
+{
+  "$defs": {
+    "StageRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "agent": {
+          "title": "Agent",
+          "type": "string"
+        },
+        "artifact_ref": {
+          "default": "",
+          "title": "Artifact Ref",
+          "type": "string"
+        },
+        "attempts": {
+          "default": 1,
+          "title": "Attempts",
+          "type": "integer"
+        },
+        "detail": {
+          "default": "",
+          "title": "Detail",
+          "type": "string"
+        },
+        "duration_s": {
+          "default": 0.0,
+          "title": "Duration S",
+          "type": "number"
+        },
+        "stage": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Stage",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/StageStatus"
+        }
+      },
+      "required": [
+        "stage",
+        "agent",
+        "status"
+      ],
+      "title": "StageRecord",
+      "type": "object"
+    },
+    "StageStatus": {
+      "enum": [
+        "pending",
+        "running",
+        "completed",
+        "failed",
+        "skipped"
+      ],
+      "title": "StageStatus",
+      "type": "string"
+    }
+  },
+  "$id": "https://agentic.dev/schemas/RunReport.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "files_written": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Files Written",
+      "type": "array"
+    },
+    "fix_rounds": {
+      "default": 0,
+      "title": "Fix Rounds",
+      "type": "integer"
+    },
+    "how_to_run": {
+      "items": {
+        "type": "string"
+      },
+      "title": "How To Run",
+      "type": "array"
+    },
+    "idea": {
+      "title": "Idea",
+      "type": "string"
+    },
+    "project_dir": {
+      "default": "",
+      "title": "Project Dir",
+      "type": "string"
+    },
+    "requirements_covered": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Requirements Covered",
+      "type": "array"
+    },
+    "requirements_total": {
+      "default": 0,
+      "title": "Requirements Total",
+      "type": "integer"
+    },
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "stages": {
+      "items": {
+        "$ref": "#/$defs/StageRecord"
+      },
+      "title": "Stages",
+      "type": "array"
+    },
+    "status": {
+      "default": "failed",
+      "enum": [
+        "completed",
+        "failed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "summary": {
+      "default": "",
+      "title": "Summary",
+      "type": "string"
+    },
+    "tests_failed": {
+      "default": 0,
+      "title": "Tests Failed",
+      "type": "integer"
+    },
+    "tests_passed": {
+      "default": 0,
+      "title": "Tests Passed",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "run_id",
+    "idea"
+  ],
+  "title": "RunReport",
+  "type": "object",
+  "x-agentic-artifact": "RunReport"
+}

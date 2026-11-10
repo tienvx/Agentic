@@ -1,0 +1,86 @@
+{
+  "$id": "https://agentic.dev/schemas/IdeaBrief.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Stage 1 output: a sharpened, testable reading of the raw idea.",
+  "properties": {
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "constraints": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Constraints",
+      "type": "array"
+    },
+    "one_liner": {
+      "maxLength": 240,
+      "minLength": 10,
+      "title": "One Liner",
+      "type": "string"
+    },
+    "out_of_scope": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Out Of Scope",
+      "type": "array"
+    },
+    "problem": {
+      "minLength": 20,
+      "title": "Problem",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "success_metrics": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Success Metrics",
+      "type": "array"
+    },
+    "title": {
+      "maxLength": 120,
+      "minLength": 3,
+      "title": "Title",
+      "type": "string"
+    },
+    "users": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "title": "Users",
+      "type": "array"
+    },
+    "value": {
+      "minLength": 10,
+      "title": "Value",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "one_liner",
+    "problem",
+    "users",
+    "value",
+    "success_metrics"
+  ],
+  "title": "IdeaBrief",
+  "type": "object",
+  "x-agentic-artifact": "IdeaBrief"
+}

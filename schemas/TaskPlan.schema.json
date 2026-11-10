@@ -1,0 +1,110 @@
+{
+  "$defs": {
+    "TaskItem": {
+      "additionalProperties": false,
+      "properties": {
+        "component_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Component Ids",
+          "type": "array"
+        },
+        "depends_on": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        },
+        "description": {
+          "minLength": 15,
+          "title": "Description",
+          "type": "string"
+        },
+        "done_when": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "title": "Done When",
+          "type": "array"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "requirement_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Requirement Ids",
+          "type": "array"
+        },
+        "target_files": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 40,
+          "minItems": 1,
+          "title": "Target Files",
+          "type": "array"
+        },
+        "title": {
+          "maxLength": 160,
+          "minLength": 3,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "component_ids",
+        "target_files",
+        "requirement_ids",
+        "done_when"
+      ],
+      "title": "TaskItem",
+      "type": "object"
+    }
+  },
+  "$id": "https://agentic.dev/schemas/TaskPlan.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "goal": {
+      "minLength": 10,
+      "title": "Goal",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "tasks": {
+      "items": {
+        "$ref": "#/$defs/TaskItem"
+      },
+      "maxItems": 60,
+      "minItems": 1,
+      "title": "Tasks",
+      "type": "array"
+    }
+  },
+  "required": [
+    "goal",
+    "tasks"
+  ],
+  "title": "TaskPlan",
+  "type": "object",
+  "x-agentic-artifact": "TaskPlan"
+}

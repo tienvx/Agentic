@@ -1,0 +1,117 @@
+{
+  "$defs": {
+    "Priority": {
+      "enum": [
+        "must",
+        "should",
+        "could"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "acceptance_criteria": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "title": "Acceptance Criteria",
+          "type": "array"
+        },
+        "description": {
+          "minLength": 15,
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/RequirementKind"
+        },
+        "priority": {
+          "$ref": "#/$defs/Priority",
+          "default": "must"
+        },
+        "rationale": {
+          "default": "",
+          "title": "Rationale",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 160,
+          "minLength": 3,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "title",
+        "description",
+        "acceptance_criteria"
+      ],
+      "title": "Requirement",
+      "type": "object"
+    },
+    "RequirementKind": {
+      "enum": [
+        "functional",
+        "non-functional"
+      ],
+      "title": "RequirementKind",
+      "type": "string"
+    }
+  },
+  "$id": "https://agentic.dev/schemas/Requirements.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "open_questions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Open Questions",
+      "type": "array"
+    },
+    "project_name": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Project Name",
+      "type": "string"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/Requirement"
+      },
+      "maxItems": 60,
+      "minItems": 1,
+      "title": "Requirements",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "summary": {
+      "minLength": 20,
+      "title": "Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_name",
+    "summary",
+    "requirements"
+  ],
+  "title": "Requirements",
+  "type": "object",
+  "x-agentic-artifact": "Requirements"
+}

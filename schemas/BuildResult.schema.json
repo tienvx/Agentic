@@ -1,0 +1,98 @@
+{
+  "$defs": {
+    "FileAction": {
+      "enum": [
+        "create",
+        "modify",
+        "delete"
+      ],
+      "title": "FileAction",
+      "type": "string"
+    },
+    "FileChange": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/FileAction",
+          "default": "create"
+        },
+        "content": {
+          "default": "",
+          "title": "Content",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "FileChange",
+      "type": "object"
+    }
+  },
+  "$id": "https://agentic.dev/schemas/BuildResult.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "deviations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Deviations",
+      "type": "array"
+    },
+    "files": {
+      "items": {
+        "$ref": "#/$defs/FileChange"
+      },
+      "minItems": 1,
+      "title": "Files",
+      "type": "array"
+    },
+    "follow_ups": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Follow Ups",
+      "type": "array"
+    },
+    "notes": {
+      "default": "",
+      "title": "Notes",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "default": "ok",
+      "enum": [
+        "ok",
+        "partial",
+        "failed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "task_id": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Task Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "task_id",
+    "files"
+  ],
+  "title": "BuildResult",
+  "type": "object",
+  "x-agentic-artifact": "BuildResult"
+}

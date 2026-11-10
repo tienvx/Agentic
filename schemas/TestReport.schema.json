@@ -1,0 +1,81 @@
+{
+  "$id": "https://agentic.dev/schemas/TestReport.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "command": {
+      "default": "pytest -q",
+      "minLength": 1,
+      "title": "Command",
+      "type": "string"
+    },
+    "duration_s": {
+      "default": 0.0,
+      "title": "Duration S",
+      "type": "number"
+    },
+    "environment_ok": {
+      "default": true,
+      "title": "Environment Ok",
+      "type": "boolean"
+    },
+    "errors": {
+      "default": 0,
+      "title": "Errors",
+      "type": "integer"
+    },
+    "exit_code": {
+      "default": 1,
+      "title": "Exit Code",
+      "type": "integer"
+    },
+    "failed": {
+      "default": 0,
+      "title": "Failed",
+      "type": "integer"
+    },
+    "failures": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Failures",
+      "type": "array"
+    },
+    "passed": {
+      "default": 0,
+      "title": "Passed",
+      "type": "integer"
+    },
+    "raw_output": {
+      "default": "",
+      "title": "Raw Output",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "skipped": {
+      "default": 0,
+      "title": "Skipped",
+      "type": "integer"
+    },
+    "success": {
+      "default": false,
+      "title": "Success",
+      "type": "boolean"
+    },
+    "task_id": {
+      "default": "all",
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Task Id",
+      "type": "string"
+    }
+  },
+  "title": "TestReport",
+  "type": "object",
+  "x-agentic-artifact": "TestReport"
+}

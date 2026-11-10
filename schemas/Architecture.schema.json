@@ -1,0 +1,229 @@
+{
+  "$defs": {
+    "Component": {
+      "additionalProperties": false,
+      "properties": {
+        "depends_on": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "modules": {
+          "items": {
+            "$ref": "#/$defs/ModuleSpec"
+          },
+          "minItems": 1,
+          "title": "Modules",
+          "type": "array"
+        },
+        "name": {
+          "minLength": 2,
+          "title": "Name",
+          "type": "string"
+        },
+        "requirement_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Requirement Ids",
+          "type": "array"
+        },
+        "responsibility": {
+          "minLength": 10,
+          "title": "Responsibility",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "responsibility",
+        "modules"
+      ],
+      "title": "Component",
+      "type": "object"
+    },
+    "EntryPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "invocation": {
+          "minLength": 1,
+          "title": "Invocation",
+          "type": "string"
+        },
+        "kind": {
+          "default": "cli",
+          "enum": [
+            "cli",
+            "http",
+            "library",
+            "job"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "invocation"
+      ],
+      "title": "EntryPoint",
+      "type": "object"
+    },
+    "ModuleSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "purpose": {
+          "minLength": 5,
+          "title": "Purpose",
+          "type": "string"
+        },
+        "symbols": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Symbols",
+          "type": "array"
+        }
+      },
+      "required": [
+        "path",
+        "purpose"
+      ],
+      "title": "ModuleSpec",
+      "type": "object"
+    },
+    "Stack": {
+      "additionalProperties": false,
+      "properties": {
+        "build_tool": {
+          "default": "hatch",
+          "title": "Build Tool",
+          "type": "string"
+        },
+        "dependencies": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dependencies",
+          "type": "array"
+        },
+        "framework": {
+          "default": "none",
+          "title": "Framework",
+          "type": "string"
+        },
+        "language": {
+          "default": "python",
+          "minLength": 1,
+          "title": "Language",
+          "type": "string"
+        },
+        "package_manager": {
+          "default": "uv",
+          "title": "Package Manager",
+          "type": "string"
+        },
+        "runtime": {
+          "default": "cpython>=3.11",
+          "title": "Runtime",
+          "type": "string"
+        },
+        "test_framework": {
+          "default": "pytest",
+          "title": "Test Framework",
+          "type": "string"
+        }
+      },
+      "title": "Stack",
+      "type": "object"
+    }
+  },
+  "$id": "https://agentic.dev/schemas/Architecture.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "components": {
+      "items": {
+        "$ref": "#/$defs/Component"
+      },
+      "maxItems": 40,
+      "minItems": 1,
+      "title": "Components",
+      "type": "array"
+    },
+    "data_flow": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Data Flow",
+      "type": "array"
+    },
+    "decisions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Decisions",
+      "type": "array"
+    },
+    "entry_points": {
+      "items": {
+        "$ref": "#/$defs/EntryPoint"
+      },
+      "minItems": 1,
+      "title": "Entry Points",
+      "type": "array"
+    },
+    "overview": {
+      "minLength": 20,
+      "title": "Overview",
+      "type": "string"
+    },
+    "risks": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Risks",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "stack": {
+      "$ref": "#/$defs/Stack"
+    }
+  },
+  "required": [
+    "overview",
+    "components",
+    "entry_points"
+  ],
+  "title": "Architecture",
+  "type": "object",
+  "x-agentic-artifact": "Architecture"
+}
